@@ -13,5 +13,3 @@
         guess
         (sqrt-iter (improve guess x) guess x)))
   (sqrt-iter 1.0 0.9 x))
-
-(sqrt 97442958)
