@@ -1,17 +1,18 @@
 #lang racket
 
-(define (square x) (* x x))
+(define (>= x y) (or (> x y) (= x y)))
 
-(define (sqrt x)
-  (define (good-enough? guess prev-guess)
-    (< (abs (- prev-guess guess)) 0.000000001))
-  (define (average x y) (/ (+ x y) 2))
-  (define (improve guess x)
-      (average guess (/ x guess)))
-  (define (sqrt-iter guess prev-guess x)
-      (if (good-enough? guess prev-guess)
-        guess
-        (sqrt-iter (improve guess x) guess x)))
-  (sqrt-iter 1.0 0.9 x))
+(define (f n)
+  (cond ((< n 3) n)
+        ((>= n 3) (+ (f (- n 1)) (f (- n 2)) (f (- n 3))))))
 
-(sqrt 97442958)
+;(define (f n) (f-iter n 1))
+
+;(define (f-iter n count)
+;  (if (or (< n 3) (= count 3)) n (f-iter (- n count) (+ count 1))))
+
+;(define (f-iter n count)
+;  (cond ((< n 3) n)
+;        ((>= n 3) n)))
+
+(f 4)
