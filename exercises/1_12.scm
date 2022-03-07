@@ -7,26 +7,29 @@
   (if (or (= n 1) (= n 0)) 1
     (* n (factorial (- n 1)))))
 
-(define (binomial-coefficient n k)
-  (/ (factorial n) (* (factorial k) (factorial (- n k)))))
 
-(define (show-row row count)
-  (if (= row count)
-      1
-      (print (binomial-coefficient row (+ count 1)))))
+(define (pascal-triangle row)
+  (define (binomial-coefficient n k)
+    (/ (factorial n) (* (factorial k) (factorial (- n k)))))
 
-(show-row 5 0)
+  (define (show-row row)
+    (define (show-row-iter row count)
+      (if (= count row)
+          (print (binomial-coefficient row count))
+          (begin
+            (print (binomial-coefficient row count))
+            (show-row-iter row (+ count 1)))))
+    (show-row-iter row 0))
 
-;(define (pascal-triangle row count)
-;  (if (= row 5)
-;      row
-;      (binomial-coefficient row count))
+  (define (pascal-triangle-iter row count)
+    (if (= row count)
+      (begin
+        (show-row count))
+      (begin
+        (show-row count)
+        (newline)
+        (pascal-triangle-iter row (+ count 1)))))
 
+  (pascal-triangle-iter row 0))
 
-;(binomial-coefficient 0 0)
-;(binomial-coefficient 5 0)
-;(binomial-coefficient 5 1)
-;(binomial-coefficient 5 2)
-;(binomial-coefficient 5 3)
-;(binomial-coefficient 5 4)
-;(binomial-coefficient 5 5)
+(pascal-triangle 50)
