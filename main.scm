@@ -14,5 +14,3 @@
 ;(define (f-iter n count)
 ;  (cond ((< n 3) n)
 ;        ((>= n 3) n)))
-
-(f 4)

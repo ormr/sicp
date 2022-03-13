@@ -19,6 +19,4 @@
 	((= kinds-of-coins 4) 25)
 	((= kinds-of-coins 5) 50)))
 
-(count-charge 10)
-(count-charge 100)
-(count-charge 1000)
+(count-charge 11)
