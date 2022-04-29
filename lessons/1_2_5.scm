@@ -1,8 +1,6 @@
-#lang racket
-
 (define (gcd a b)
   (if (= b 0)
-      a
-      (gcd b (remainder a b))))
+    a
+    (gcd b (remainder a b))))
 
-(gcd 1000 32)
+(gcd 206 40)
