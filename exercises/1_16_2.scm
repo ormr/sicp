@@ -12,9 +12,4 @@
         ((even? n) (fast-expt-iter (square b) (/ n 2) (* b n)))
         (else (fast-expt-iter b (- n 1) (* b a)))))
 
-(fast-expt 2 5)
-(fast-expt 2 5)
-(fast-expt 2 5)
-(fast-expt 2 5)
-(fast-expt 2 5)
-(fast-expt 2 5)
+(fast-expt 5 5)

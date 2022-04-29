@@ -1,6 +1,7 @@
 #lang racket
 
 (define (double n) (* n 2))
+
 (define (halve n) (/ n 2))
 (define (even? n) (= (remainder n 2) 0))
 
@@ -10,4 +11,5 @@
         ((even? b) (double (fast-mult a (halve b))))
         (else (+ a (fast-mult a (- b 1))))))
 
-(fast-mult 5 5)
+(double 5 5)
+(fast-mult 5 10)
