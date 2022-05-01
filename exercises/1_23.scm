@@ -35,12 +35,6 @@
   (display " *** ")
   (display elapsed-time))
 
-; (define (search-for-primes a b)
-;   (cond ((and (not (even? a)) (< a b))
-;         (timed-prime-test a)
-;         (search-for-primes (+ a 1) b))
-;         (else (search-for-primes (+ a 1) b))))
-
 (define (search-for-primes a b)
   (cond ((and (even? a) (< a b)) (search-for-primes (+ a 1) b))
         ((and (not (even? a)) (< a b))
