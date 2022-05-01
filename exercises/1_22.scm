@@ -1,15 +1,26 @@
-; TODO
-; Написать процедуру search-for-primes, которая проверяет на простоту все нечетные числа в заданном диапазоне
+#lang sicp
+
+(define (square n) (* n n))
+
+(define (even? n)
+   (= (remainder n 2) 0))
+
+(define (divides? a b)
+  (= (remainder b a) 0))
+
+(define (next test-divisor)
+  (if (even? test-divisor) (+ test-divisor 1) (+ test-divisor 2)))
+
+(define (smallest-divisor n)
+  (find-divisor n 2))
+
+
+(define (find-divisor n test-divisor)
+  (cond ((> (square test-divisor) n) n)
+        ((divides? test-divisor n) test-divisor)
+        (else (find-divisor n (next test-divisor)))))
 
 (define (prime? n)
-  (define (smallest-divisor n)
-    (define (find-divisor n test-divisor)
-      (cond ((> (square test-divisor) n) n)
-            ((divides? test-divisor n) test-divisor)
-            (else (find-divisor n (+ test-divisor 1)))))
-    (define (divides? a b)
-      (= (remainder b a) 0))
-    (find-divisor n 2))
   (= n (smallest-divisor n)))
 
 (define (timed-prime-test n)
@@ -25,6 +36,10 @@
   (display " *** ")
   (display elapsed-time))
 
-(timed-prime-test 1999999999)
+(define (search-for-primes a b)
+  (cond ((or (> a b) (= a b)) (timed-prime-test a))
+        (else
+          (timed-prime-test a)
+          (search-for-primes (next a) b))))
 
-
+(search-for-primes 1 1000000)
