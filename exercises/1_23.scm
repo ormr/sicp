@@ -7,17 +7,21 @@
 (define (divides? a b)
   (= (remainder b a) 0))
 
+(define (next test-divisor)
+  (if (even? test-divisor)
+    (+ test-divisor 1)
+    (+ test-divisor 2)))
+
 ; --- is prime ---
 
 (define (smallest-divisor n)
   (find-divisor n 2))
 
+
 (define (find-divisor n test-divisor)
   (cond ((> (square test-divisor) n) n)
         ((divides? test-divisor n) test-divisor)
-        (else (find-divisor n (+ test-divisor 1)))))
-
-(define (square n) (* n n))
+        (else (find-divisor n (next test-divisor)))))
 
 (define (prime? n)
   (= n (smallest-divisor n)))

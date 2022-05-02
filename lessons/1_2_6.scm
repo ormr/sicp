@@ -1,5 +1,3 @@
-; The brute force solution
-
 (define (smallest-divisor n)
   (find-divisor n 2))
 
@@ -15,18 +13,24 @@
   (= n (smallest-divisor n)))
 
 ;(prime? 5)
-;(prime?	9973)
-;(prime? 2305843009213693951)
 
-; Fermat primality test
-
-(define (expmode base exp m)
+(define (expmod base exp m)
   (cond ((= exp 0) 1)
         ((even? exp)
-         (remainder (square (expmod base (/ exp 2) m))
+         (remainder (square (expmod base (/ exp 2) m ))
                     m))
         (else
           (remainder (* base (expmod base (- exp 1) m))
                      m))))
 
-(expmode 4 4 4)
+(define (fermat-test n)
+  (define (try-it a)
+    (= (expmod a n n) a))
+  (try-it (+ 1 (random (- n 1)))))
+
+(define (fast-prime? n times)
+  (cond ((= times 0) true)
+        ((fermat-test n) (fast-prime? n (- times 1)))
+        (else false)))
+
+(fast-prime? 5 5)
