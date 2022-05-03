@@ -15,6 +15,8 @@
         ((divides? test-divisor n) test-divisor)
         (else (find-divisor n (+ test-divisor 1)))))
 
+(define (square n) (* n n))
+
 (define (prime? n)
   (= n (smallest-divisor n)))
 
