@@ -9,4 +9,4 @@
       (iter (next a) (+ (term a) result))
   (iter a 0))))
 
-;(sum)
+
