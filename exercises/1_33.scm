@@ -4,6 +4,11 @@
 (define (identity x) x)
 (define (square x) (* x x))
 
+(define (gcd a b)
+  (if (= b 0)
+    a
+    (gcd b (remainder a b))))
+
 ; Проверка на простоту
 
 (define (even? n) (= (remainder n 2) 0))
@@ -64,5 +69,14 @@
 (define (product-integers a b filter)
   (product identity a inc b filter))
 
-(sum-integers 1 4 prime?)
-(product-integers 1 10 prime?)
+(define (sum-prime-integers a b)
+  (sum-integers a b prime?))
+
+(define (product-prime-integers a b)
+  (product-integers a b prime?))
+
+(define (product-gcd-integers a n)
+  (product-integers a n (lambda (i) (= (gcd i n) 1))))
+
+; (product-prime-integers 1 6)
+(product-gcd-integers 1 5)
